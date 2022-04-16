@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../misc/colors.dart';
 import '../../widgets/app_text.dart';
+import '../../widgets/appbar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -39,21 +40,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Icon(Icons.menu, size: 30, color: Colors.black54),
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.withOpacity(0.5),
-                      ),
-                    ),
-                  ],
+              AppBarWidget(
+                leftIconPressed: () {},
+                rightAction: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey.withOpacity(0.5),
+                  ),
                 ),
               ),
               const SizedBox(height: 30),

@@ -81,20 +81,23 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         itemCount: 3,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: const EdgeInsets.only(
-                              right: 15,
-                              top: 10,
-                            ),
-                            width: 200,
-                            height: 300,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                              image: const DecorationImage(
-                                image:
-                                    AssetImage("assets/images/mountain.jpeg"),
-                                fit: BoxFit.cover,
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                right: 15,
+                                top: 10,
+                              ),
+                              width: 200,
+                              height: 300,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                image: const DecorationImage(
+                                  image:
+                                      AssetImage("assets/images/mountain.jpeg"),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           );

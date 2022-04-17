@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/cubit/app_cubit_logics.dart';
+import 'package:travel_app/services/data_services.dart';
 import 'cubit/app_cubits.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,7 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: BlocProvider<AppCubits>(
-        create: (context) => AppCubits(),
+        create: (context) => AppCubits(
+          data: DataServices(),
+        ),
         child: const AppCubitLogics(),
       ),
     );

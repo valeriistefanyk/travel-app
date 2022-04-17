@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/cubit/app_cubits.dart';
 import '../misc/colors.dart';
 import '../widgets/app_text.dart';
 import '../widgets/responsive_button.dart';
@@ -71,7 +73,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                       ),
                       const SizedBox(height: 40),
-                      const ResponsiveButton(
+                      ResponsiveButton(
+                        onTap: () {
+                          BlocProvider.of<AppCubits>(context).getData();
+                        },
                         width: 120,
                       ),
                     ],

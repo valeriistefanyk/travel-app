@@ -146,6 +146,7 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                           const SizedBox(width: 15),
                           ResponsiveButton(
+                            onTap: () {},
                             isResponsive: true,
                           ),
                         ],

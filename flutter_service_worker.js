@@ -3,12 +3,12 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "main.dart.js": "a41debe3084ceadda560bc4e33223e02",
-"index.html": "1e12db1c377efdae091630ed660dcf7f",
-"/": "1e12db1c377efdae091630ed660dcf7f",
+  "main.dart.js": "b0f4b78b4abd754b62a104c603464652",
+"index.html": "1e42b588429e57f419eba78d52aee183",
+"/": "1e42b588429e57f419eba78d52aee183",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "assets/fonts/MaterialIcons-Regular.otf": "7e7a6cccddf6d7b20012a548461d5d81",
-"assets/AssetManifest.json": "5d8d47624804bfd18d06d7212249b72f",
+"assets/AssetManifest.json": "758413f5f3872e6b0cfa48a095f45e8e",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/assets/images/welcome-two.png": "f500b9365df41096b271595c9e91c94f",
@@ -20,7 +20,8 @@ const RESOURCES = {
 "assets/assets/images/mountain.jpeg": "e95546993902d8ca8958e85721c11d47",
 "assets/assets/images/balloning.png": "6746e49804159d23df9d26de99a4d182",
 "assets/assets/images/snorkling.png": "359cad2a9eebf0eccb48aa1e4ca69e09",
-"assets/NOTICES": "48ce4e8503f9a2d40b45a0192cf2f519",
+"assets/assets/dumb_data/places.json": "07b2cb8e3767e1b178460dbeed236d3f",
+"assets/NOTICES": "ed48b349c43dc45e46f5cf9419cc0242",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",

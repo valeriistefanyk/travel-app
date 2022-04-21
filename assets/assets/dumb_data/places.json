@@ -7,7 +7,7 @@
         "stars": 4,
         "people": 5,
         "selected_people": 5,
-        "img": "images\/f9d4b5e088c7bc70b7bbd51cd89e71b6.jpeg",
+        "img": "f9d4b5e088c7bc70b7bbd51cd89e71b6.jpeg",
         "location": "Canada, British Columbia",
         "created_at": "2021-11-17T10:09:08.000000Z",
         "updated_at": "2021-11-19T13:39:55.000000Z"
@@ -20,7 +20,7 @@
         "stars": 5,
         "people": 5,
         "selected_people": 3,
-        "img": "images\/1a2d25d3c5ea7912982e37b8005bbebe.jpeg",
+        "img": "1a2d25d3c5ea7912982e37b8005bbebe.jpeg",
         "location": "Icefields, Alberta",
         "created_at": "2021-11-17T10:10:43.000000Z",
         "updated_at": "2021-11-19T14:18:09.000000Z"
@@ -33,7 +33,7 @@
         "stars": 3,
         "people": 5,
         "selected_people": 4,
-        "img": "images\/9a4079ae9e67ca51b9fdf4670a5795f4.jpeg",
+        "img": "9a4079ae9e67ca51b9fdf4670a5795f4.jpeg",
         "location": "Moraine Lake, Alberta",
         "created_at": "2021-11-17T10:16:31.000000Z",
         "updated_at": "2021-11-19T13:40:36.000000Z"
@@ -46,7 +46,7 @@
         "stars": 4,
         "people": 5,
         "selected_people": 3,
-        "img": "images\/24fe838b325456a0ca7fc2249409de3f.jpeg",
+        "img": "24fe838b325456a0ca7fc2249409de3f.jpeg",
         "location": "Killarney Provincial Park",
         "created_at": "2021-11-17T10:18:46.000000Z",
         "updated_at": "2021-11-19T13:40:44.000000Z"
@@ -59,7 +59,7 @@
         "stars": 5,
         "people": 5,
         "selected_people": 4,
-        "img": "images\/9aaf2377eb3e0978ecb0e17717579a2b.jpg",
+        "img": "9aaf2377eb3e0978ecb0e17717579a2b.jpg",
         "location": "Palestine, Gaza",
         "created_at": "2021-12-08T12:29:53.000000Z",
         "updated_at": "2021-12-08T12:29:53.000000Z"

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/cubit/app_cubits.dart';
 import 'package:travel_app/misc/colors.dart';
 import 'package:travel_app/widgets/app_buttons.dart';
 import 'package:travel_app/widgets/app_text.dart';
 import 'package:travel_app/widgets/responsive_button.dart';
+import '../cubit/app_cubit_states.dart';
 import '../widgets/appbar_widget.dart';
 
 class DetailPage extends StatefulWidget {
@@ -13,32 +16,27 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  var detailData = {
-    "title": "Yosemite",
-    "price": "\$ 250",
-    "location": "USA, California",
-    "rating": 4.32,
-    "maximum_number_of_people": 5,
-    "description":
-        "Yosemite National Park is located in central Sierra Nevada in the US state of California. It is located near the wild protected areas.",
-  };
-
   var numberPeopleIndexChosen = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Stack(children: [
+          child: BlocBuilder<AppCubits, CubitStates>(builder: (context, state) {
+        final detail = state as DetailState;
+        return Stack(children: [
           Image.asset(
-            "assets/images/mountain.jpeg",
+            "assets/images/uploads/${detail.place.img}",
             height: 300,
             width: double.maxFinite,
             fit: BoxFit.cover,
             alignment: Alignment.topCenter,
           ),
           AppBarWidget(
-            leftIconPressed: () {},
+            leftIcon: Icons.arrow_back,
+            leftIconPressed: () {
+              BlocProvider.of<AppCubits>(context).goHome();
+            },
             iconColor: Colors.white,
             rightAction: const Icon(
               Icons.menu,
@@ -68,9 +66,9 @@ class _DetailPageState extends State<DetailPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppLargeText(detailData["title"] as String),
+                          AppLargeText(detail.place.name),
                           AppLargeText(
-                            detailData["price"] as String,
+                            detail.place.priceWithCurrency,
                             color: AppColors.mainColor,
                           ),
                         ],
@@ -85,7 +83,7 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                           const SizedBox(width: 5),
                           AppText(
-                            detailData["location"] as String,
+                            detail.place.location,
                             color: AppColors.mainColor,
                           ),
                         ],
@@ -95,11 +93,11 @@ class _DetailPageState extends State<DetailPage> {
                         children: [
                           Wrap(
                             children:
-                                getRatingStar(detailData["rating"] as double),
+                                getRatingStar(detail.place.stars.toDouble()),
                           ),
                           const SizedBox(width: 5),
                           AppText(
-                              "(${(detailData["rating"] as double).toStringAsFixed(1)})")
+                              "(${(detail.place.stars.toDouble()).toStringAsFixed(1)})")
                         ],
                       ),
                       const SizedBox(height: 20),
@@ -110,8 +108,7 @@ class _DetailPageState extends State<DetailPage> {
                           height: 50,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount:
-                                detailData["maximum_number_of_people"] as int,
+                            itemCount: detail.place.people,
                             itemBuilder: (_, index) => Padding(
                               padding: const EdgeInsets.only(right: 10),
                               child: AppButtons(
@@ -131,7 +128,7 @@ class _DetailPageState extends State<DetailPage> {
                           )),
                       const SizedBox(height: 20),
                       const AppLargeText("Опис", size: 24),
-                      AppText(detailData["description"] as String),
+                      AppText(detail.place.description),
                       const SizedBox(height: 20),
                       Row(
                         children: [
@@ -155,8 +152,8 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
           ),
-        ]),
-      ),
+        ]);
+      })),
     );
   }
 

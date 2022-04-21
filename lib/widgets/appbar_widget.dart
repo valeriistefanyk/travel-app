@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class AppBarWidget extends StatelessWidget {
   final Widget rightAction;
   final Color iconColor;
+  final IconData leftIcon;
   final VoidCallback leftIconPressed;
 
   const AppBarWidget({
     required this.rightAction,
     required this.leftIconPressed,
+    this.leftIcon = Icons.menu,
     Key? key,
     this.iconColor = Colors.black54,
   }) : super(key: key);
@@ -21,7 +23,7 @@ class AppBarWidget extends StatelessWidget {
         children: [
           IconButton(
             onPressed: leftIconPressed,
-            icon: Icon(Icons.menu, size: 30, color: iconColor),
+            icon: Icon(leftIcon, size: 30, color: iconColor),
           ),
           rightAction,
         ],

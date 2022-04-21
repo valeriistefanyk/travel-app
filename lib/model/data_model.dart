@@ -27,4 +27,8 @@ class DataModel {
         description: json["description"],
         location: json["location"]);
   }
+
+  String get priceWithCurrency {
+    return "\$ $price";
+  }
 }

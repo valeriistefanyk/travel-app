@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:travel_app/cubit/app_cubit_states.dart';
 
+import 'app_cubit_states.dart';
+import '../model/data_model.dart';
 import '../services/data_services.dart';
 
 class AppCubits extends Cubit<CubitStates> {
@@ -17,5 +18,13 @@ class AppCubits extends Cubit<CubitStates> {
       places = await data.getDumbInfo();
       emit(LoadedState(places));
     } catch (e) {}
+  }
+
+  void detailPage(DataModel data) {
+    emit(DetailState(data));
+  }
+
+  void goHome() {
+    emit(LoadedState(places));
   }
 }

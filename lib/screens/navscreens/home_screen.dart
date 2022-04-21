@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../misc/colors.dart';
 import '../../widgets/app_text.dart';
 import '../../widgets/appbar_widget.dart';
+import '../../cubit/app_cubit_states.dart';
+import '../../cubit/app_cubits.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,110 +40,116 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppBarWidget(
-                leftIconPressed: () {},
-                rightAction: Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey.withOpacity(0.5),
+        child: SingleChildScrollView(child:
+            BlocBuilder<AppCubits, CubitStates>(builder: (context, state) {
+          if (state is LoadedState) {
+            var info = state.places;
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppBarWidget(
+                  leftIconPressed: () {},
+                  rightAction: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey.withOpacity(0.5),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 30),
-              const Padding(
-                padding: EdgeInsets.only(left: 20.0),
-                child: AppLargeText("Пропозиції"),
-              ),
-              const SizedBox(height: 20),
-              TabBar(
-                  controller: _tabController,
-                  labelColor: Colors.black,
-                  unselectedLabelColor: Colors.grey,
-                  isScrollable: true,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicator: const CircleTabIndicator(
-                      color: AppColors.mainColor, radius: 4),
-                  tabs: const [
-                    Tab(text: "Місця"),
-                    Tab(text: "Натхнення"),
-                    Tab(text: "Емоції"),
-                  ]),
-              Container(
-                padding: const EdgeInsets.only(left: 20),
-                height: 300,
-                width: double.maxFinite,
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    ListView.builder(
-                        itemCount: 3,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              margin: const EdgeInsets.only(
-                                right: 15,
-                                top: 10,
-                              ),
-                              width: 200,
-                              height: 300,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                                image: const DecorationImage(
-                                  image:
-                                      AssetImage("assets/images/mountain.jpeg"),
-                                  fit: BoxFit.cover,
+                const SizedBox(height: 30),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20.0),
+                  child: AppLargeText("Пропозиції"),
+                ),
+                const SizedBox(height: 20),
+                TabBar(
+                    controller: _tabController,
+                    labelColor: Colors.black,
+                    unselectedLabelColor: Colors.grey,
+                    isScrollable: true,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicator: const CircleTabIndicator(
+                        color: AppColors.mainColor, radius: 4),
+                    tabs: const [
+                      Tab(text: "Місця"),
+                      Tab(text: "Натхнення"),
+                      Tab(text: "Емоції"),
+                    ]),
+                Container(
+                  padding: const EdgeInsets.only(left: 20),
+                  height: 300,
+                  width: double.maxFinite,
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      ListView.builder(
+                          itemCount: info.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 15, top: 10),
+                              child: GestureDetector(
+                                onTap: () {
+                                  BlocProvider.of<AppCubits>(context)
+                                      .detailPage(info[index]);
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image.asset(
+                                    "assets/images/uploads/${info[index].img}",
+                                    fit: BoxFit.cover,
+                                    width: 200,
+                                    height: 300,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }),
-                    const Text("The Second Page"),
-                    const Text("The Third Page"),
-                  ],
+                            );
+                          }),
+                      const Text("The Second Page"),
+                      const Text("The Third Page"),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 30),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const AppLargeText("Explore more", size: 22),
-                    GestureDetector(
-                      child: const AppText(
-                        "See all",
-                        color: AppColors.textColor1,
-                      ),
-                    )
-                  ],
+                const SizedBox(height: 30),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const AppLargeText("Explore more", size: 22),
+                      GestureDetector(
+                        child: const AppText(
+                          "See all",
+                          color: AppColors.textColor1,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                height: 120,
-                width: double.maxFinite,
-                margin: const EdgeInsets.only(left: 20),
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: exploringObj.length,
-                    itemBuilder: (_, index) => SquareBlockWidget(
-                          imagePath:
-                              "assets/images/${exploringObj[index]["image"]}",
-                          text: exploringObj[index]["title"] as String,
-                        )),
-              ),
-            ],
-          ),
-        ),
+                const SizedBox(height: 10),
+                Container(
+                  height: 120,
+                  width: double.maxFinite,
+                  margin: const EdgeInsets.only(left: 20),
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: exploringObj.length,
+                      itemBuilder: (_, index) => SquareBlockWidget(
+                            imagePath:
+                                "assets/images/${exploringObj[index]["image"]}",
+                            text: exploringObj[index]["title"] as String,
+                          )),
+                ),
+              ],
+            );
+          } else {
+            return Container();
+          }
+        })),
       ),
     );
   }
